@@ -53,11 +53,13 @@ if (MSVC)
 	)
 
 	set_target_properties(bsatk PROPERTIES VS_STARTUP_PROJECT bsatk)
+else()
+	target_include_directories(bsatk PRIVATE ${CMAKE_CURRENT_LIST_DIR}/../include/bsatk/linux)
 endif()
 
 add_library(mo2::bsatk ALIAS bsatk)
 
-# isntall
+# install
 install(TARGETS bsatk EXPORT bsatkTargets FILE_SET HEADERS)
 install(EXPORT bsatkTargets
 	FILE mo2-bsatk-targets.cmake
