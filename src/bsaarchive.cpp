@@ -28,6 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 #include <boost/shared_array.hpp>
 #include <boost/thread.hpp>
 #include <cstring>
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <lz4.h>
@@ -36,7 +37,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 #include <queue>
 #include <sys/stat.h>
 #include <zlib.h>
-#include <filesystem>
 
 using std::fstream;
 
