@@ -1114,7 +1114,6 @@ void Archive::extractFiles(const std::string& targetDirectory,
 
       EErrorCode result = ERROR_NONE;
       try {
-        BSAULong length = fileInfo.file->m_UncompressedFileSize;
         if (fileInfo.file->m_FileSize > 0 && !fileInfo.file->m_TextureChunks.size()) {
           BSAULong length = fileInfo.file->m_UncompressedFileSize;
           std::shared_ptr<unsigned char[]> buffer =
