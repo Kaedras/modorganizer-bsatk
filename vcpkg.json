@@ -4,7 +4,8 @@
     "zlib",
     "lz4",
     "boost-thread",
-    "boost-interprocess"
+    "boost-interprocess",
+    "directx-headers"
   ],
   "vcpkg-configuration": {
     "default-registry": {

@@ -4,10 +4,11 @@ find_package(Boost REQUIRED CONFIG COMPONENTS thread interprocess)
 find_package(ZLIB REQUIRED)
 find_package(lz4 CONFIG REQUIRED)
 find_package(mo2-dds-header CONFIG REQUIRED)
+find_package(directx-headers CONFIG REQUIRED)
 
 add_library(bsatk STATIC)
 target_link_libraries(bsatk
-	PUBLIC mo2::dds-header
+	PUBLIC mo2::dds-header Microsoft::DirectX-Headers
 	PRIVATE ZLIB::ZLIB lz4::lz4 Boost::thread Boost::interprocess
 )
 
@@ -53,8 +54,6 @@ if (MSVC)
 	)
 
 	set_target_properties(bsatk PROPERTIES VS_STARTUP_PROJECT bsatk)
-else()
-	target_include_directories(bsatk PRIVATE ${CMAKE_CURRENT_LIST_DIR}/../include/bsatk/linux)
 endif()
 
 add_library(mo2::bsatk ALIAS bsatk)

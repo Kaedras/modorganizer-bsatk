@@ -23,32 +23,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include <fstream>
 #include <string>
+#include <cstdint>
 
-#include <dxgiformat.h>
-
+#include <directx/dxgiformat.h>
 #include <DDS.h>
 
 #include "bsaexception.h"
 
-#ifdef WIN32
-#include <Windows.h>
-
 typedef unsigned char BSAUChar;
 typedef unsigned short BSAUShort;
 typedef unsigned int BSAUInt;
 typedef unsigned long BSAULong;
 typedef unsigned long long BSAHash;
-
-#else  // WIN32
-#include <stdint.h>
-
-typedef unsigned char BSAUChar;
-typedef unsigned short BSAUShort;
-typedef unsigned int BSAUInt;
-typedef unsigned long BSAULong;
-typedef unsigned long long BSAHash;
-
-#endif  // WIN32
 
 enum ArchiveType
 {
