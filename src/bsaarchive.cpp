@@ -28,6 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 #include <boost/shared_array.hpp>
 #include <boost/thread.hpp>
 #include <cstring>
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <lz4.h>
@@ -36,8 +37,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 #include <queue>
 #include <sys/stat.h>
 #include <zlib.h>
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
 
 using std::fstream;
 
@@ -1135,8 +1134,8 @@ void Archive::createFolders(const std::string& targetDirectory, Folder::Ptr fold
 {
   for (std::vector<Folder::Ptr>::iterator iter = folder->m_SubFolders.begin();
        iter != folder->m_SubFolders.end(); ++iter) {
-    std::string subDirName = targetDirectory + "\\" + (*iter)->getName();
-    ::CreateDirectoryA(subDirName.c_str(), nullptr);
+    std::string subDirName = targetDirectory + "/" + (*iter)->getName();
+    std::filesystem::create_directory(subDirName);
     createFolders(subDirName, *iter);
   }
 }
