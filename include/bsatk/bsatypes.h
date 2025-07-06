@@ -30,11 +30,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include "bsaexception.h"
 
-typedef unsigned char BSAUChar;
-typedef uint16_t BSAUShort;
-typedef uint32_t BSAUInt;
-typedef uint32_t BSAULong;
-typedef uint64_t BSAHash;
+using BSAUChar = unsigned char;
+using BSAUShort = uint16_t;
+using BSAUInt = uint32_t;
+using BSAULong = uint32_t;
+using BSAHash = uint64_t;
 
 enum ArchiveType
 {

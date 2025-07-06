@@ -40,7 +40,7 @@ class File
   friend class Archive;
 
 public:
-  typedef std::shared_ptr<File> Ptr;
+  using Ptr = std::shared_ptr<File>;
   friend bool ByOffset(const File::Ptr& LHS, const File::Ptr& RHS);
 
 private:

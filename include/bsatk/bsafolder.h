@@ -38,7 +38,7 @@ class Folder
   friend class Archive;
 
 public:
-  typedef std::shared_ptr<Folder> Ptr;
+  using Ptr = std::shared_ptr<Folder>;
 
 public:
   /**
