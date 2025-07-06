@@ -288,7 +288,7 @@ EErrorCode Archive::read(const char* fileName, bool testHashes)
       // flat list of folders as they were stored in the archive
       std::vector<Folder::Ptr> folders;
 
-      for (unsigned long i = 0; i < header.folderCount; ++i) {
+      for (uint32_t i = 0; i < header.folderCount; ++i) {
         folders.push_back(m_RootFolder->addFolder(m_File, header.fileNameLength,
                                                   header.offset, header.type));
       }
@@ -627,7 +627,7 @@ void Archive::getDX10Header(DirectX::DDS_HEADER_DXT10& DX10Header, File::Ptr fil
   DX10Header.miscFlags2        = 0;
 }
 
-static const unsigned long CHUNK_SIZE = 128 * 1024;
+static const uint32_t CHUNK_SIZE = 128 * 1024;
 
 EErrorCode Archive::extractDirect(File::Ptr file, std::ofstream& outFile) const
 {
@@ -692,7 +692,7 @@ EErrorCode Archive::extractDirect(File::Ptr file, std::ofstream& outFile) const
   std::unique_ptr<char[]> inBuffer(new char[CHUNK_SIZE]);
 
   try {
-    unsigned long sizeLeft = file->m_FileSize;
+    uint32_t sizeLeft = file->m_FileSize;
 
     while (sizeLeft > 0) {
       int chunkSize = (std::min)(sizeLeft, CHUNK_SIZE);

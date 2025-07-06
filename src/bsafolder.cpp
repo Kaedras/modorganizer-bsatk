@@ -36,7 +36,7 @@ Folder::Folder() : m_Parent(nullptr), m_Name()
 {
   m_NameHash  = calculateBSAHash(m_Name);
   m_FileCount = 0;
-  m_Offset    = std::numeric_limits<unsigned long>::max();
+  m_Offset    = std::numeric_limits<uint32_t>::max(); // todo: check if this should use uint64_t instead
 }
 
 Folder::Ptr Folder::readFolder(std::fstream& file, BSAUInt fileNamesLength,
@@ -44,19 +44,19 @@ Folder::Ptr Folder::readFolder(std::fstream& file, BSAUInt fileNamesLength,
 {
   Folder::Ptr result(new Folder());
   result->m_NameHash  = readType<BSAHash>(file);
-  result->m_FileCount = readType<unsigned long>(file);
-  result->m_Offset    = readType<unsigned long>(file);
+  result->m_FileCount = readType<uint32_t>(file);
+  result->m_Offset    = readType<uint32_t>(file);
   std::streamoff pos  = file.tellg();
 
   file.seekg(result->m_Offset - fileNamesLength, fstream::beg);
 
   result->m_Name = readBString(file);
 
-  for (unsigned long i = 0UL; i < result->m_FileCount; ++i) {
+  for (uint32_t i = 0; i < result->m_FileCount; ++i) {
     result->m_Files.push_back(File::Ptr(new File(file, result.get())));
   }
 
-  if (static_cast<unsigned long>(file.tellg()) > endPos) {
+  if (static_cast<uint32_t>(file.tellg()) > endPos) {
     endPos = static_cast<BSAULong>(file.tellg());
   }
 
@@ -79,11 +79,11 @@ Folder::Ptr Folder::readFolderSE(std::fstream& file, BSAUInt fileNamesLength,
 
   result->m_Name = readBString(file);
 
-  for (unsigned long i = 0UL; i < result->m_FileCount; ++i) {
+  for (uint32_t i = 0; i < result->m_FileCount; ++i) {
     result->m_Files.push_back(File::Ptr(new File(file, result.get())));
   }
 
-  if (static_cast<unsigned long>(file.tellg()) > endPos) {
+  if (static_cast<uint32_t>(file.tellg()) > endPos) {
     endPos = static_cast<BSAULong>(file.tellg());
   }
 

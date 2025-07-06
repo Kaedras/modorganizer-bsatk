@@ -31,10 +31,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 #include "bsaexception.h"
 
 typedef unsigned char BSAUChar;
-typedef unsigned short BSAUShort;
-typedef unsigned int BSAUInt;
-typedef unsigned long BSAULong;
-typedef unsigned long long BSAHash;
+typedef uint16_t BSAUShort;
+typedef uint32_t BSAUInt;
+typedef uint32_t BSAULong;
+typedef uint64_t BSAHash;
 
 enum ArchiveType
 {

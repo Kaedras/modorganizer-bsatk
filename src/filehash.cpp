@@ -29,9 +29,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 #define MAX_PATH PATH_MAX
 #endif  // MAX_PATH
 
-static unsigned long genHashInt(const unsigned char* pos, const unsigned char* end)
+static uint32_t genHashInt(const unsigned char* pos, const unsigned char* end)
 {
-  unsigned long hash = 0;
+  uint32_t hash = 0;
   for (; pos < end; ++pos) {
     hash *= 0x1003f;
     hash += *pos;
