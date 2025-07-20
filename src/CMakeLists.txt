@@ -54,6 +54,19 @@ if (MSVC)
 	)
 
 	set_target_properties(bsatk PROPERTIES VS_STARTUP_PROJECT bsatk)
+else()
+	target_compile_options(bsatk
+			PRIVATE
+			"-Wall"
+			"-Wextra"
+			"-Wno-unknown-pragmas"
+			"-fvisibility-ms-compat"
+			"-Wl,--no-undefined"
+	)
+	target_link_options(bsatk
+			PRIVATE
+			$<$<CONFIG:RelWithDebInfo>:-flto=auto>
+	)
 endif()
 
 add_library(mo2::bsatk ALIAS bsatk)
