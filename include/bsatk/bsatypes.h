@@ -25,8 +25,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 #include <fstream>
 #include <string>
 
-#include <DDS.h>
+// clang-format off
+// DDS.h does not include dxgiformat.h but depends on it
 #include <directx/dxgiformat.h>
+#include <DDS.h>
+// clang-format on
 
 #include "bsaexception.h"
 
