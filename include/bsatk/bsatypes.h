@@ -21,20 +21,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 #ifndef BSATYPES_H
 #define BSATYPES_H
 
+#include <cstdint>
 #include <fstream>
 #include <string>
-#include <cstdint>
 
-#include <directx/dxgiformat.h>
 #include <DDS.h>
+#include <directx/dxgiformat.h>
 
 #include "bsaexception.h"
 
-using BSAUChar = unsigned char;
+using BSAUChar  = unsigned char;
 using BSAUShort = uint16_t;
-using BSAUInt = uint32_t;
-using BSAULong = uint32_t;
-using BSAHash = uint64_t;
+using BSAUInt   = uint32_t;
+using BSAULong  = uint32_t;
+using BSAHash   = uint64_t;
 
 enum ArchiveType
 {

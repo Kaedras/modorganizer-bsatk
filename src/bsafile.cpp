@@ -126,7 +126,7 @@ EErrorCode File::writeData(fstream& sourceArchive, fstream& targetArchive) const
       return ERROR_SOURCEFILEMISSING;
     }
     sourceFile.seekg(0, fstream::end);
-    m_FileSize             = static_cast<BSAULong>(sourceFile.tellg());
+    m_FileSize        = static_cast<BSAULong>(sourceFile.tellg());
     uint32_t sizeLeft = m_FileSize;
     sourceFile.seekg(0, fstream::beg);
     while (sizeLeft > 0) {
