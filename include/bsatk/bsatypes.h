@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 #ifndef BSATYPES_H
 #define BSATYPES_H
 
+#include <cstdint>
 #include <fstream>
 #include <string>
 
@@ -30,25 +31,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include "bsaexception.h"
 
-#ifdef WIN32
-#include <Windows.h>
-
-typedef unsigned char BSAUChar;
-typedef unsigned short BSAUShort;
-typedef unsigned int BSAUInt;
-typedef unsigned long BSAULong;
-typedef unsigned long long BSAHash;
-
-#else  // WIN32
-#include <stdint.h>
-
-typedef unsigned char BSAUChar;
-typedef unsigned short BSAUShort;
-typedef unsigned int BSAUInt;
-typedef unsigned long BSAULong;
-typedef unsigned long long BSAHash;
-
-#endif  // WIN32
+using BSAUChar  = uint8_t;
+using BSAUShort = uint16_t;
+using BSAUInt   = uint32_t;
+using BSAULong  = uint32_t;
+using BSAHash   = uint64_t;
 
 enum ArchiveType
 {
