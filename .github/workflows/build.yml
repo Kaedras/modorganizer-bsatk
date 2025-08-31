@@ -11,7 +11,19 @@ env:
 
 jobs:
   build:
-    runs-on: windows-2022
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ windows-2022, ubuntu-24.04 ]
+        include:
+          - os: windows-2022
+            build_dir: vsbuild
+            preset: vs2022-windows
+          - os: ubuntu-24.04
+            build_dir: build
+            preset: linux
+
+    runs-on: ${{ matrix.os }}
     steps:
       # set VCPKG Root
       - name: "Set environmental variables"
@@ -25,16 +37,16 @@ jobs:
       - name: Configure BSATK build
         shell: pwsh
         run: |
-          cmake --preset vs2022-windows "-DCMAKE_INSTALL_PREFIX=install"
+          cmake --preset ${{ matrix.preset }} "-DCMAKE_INSTALL_PREFIX=install"
 
       - name: Build BSATK
-        run: cmake --build vsbuild --config RelWithDebInfo
+        run: cmake --build ${{ matrix.build_dir }} --config RelWithDebInfo
 
       - name: Install BSATK
-        run: cmake --install vsbuild --config RelWithDebInfo
+        run: cmake --install ${{ matrix.build_dir }} --config RelWithDebInfo
 
       - name: Upload BSATK artifact
         uses: actions/upload-artifact@master
         with:
-          name: BSATK
+          name: BSATK-${{ runner.os }}
           path: ./install
