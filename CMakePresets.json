@@ -48,7 +48,7 @@
     {
       "binaryDir": "${sourceDir}/build",
       "cacheVariables": {
-        "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Wno-unknown-pragmas",
+        "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Wno-unknown-pragmas -fPIC -fvisibility-ms-compat -Wl,--no-undefined",
         "VCPKG_TARGET_TRIPLET": {
           "type": "STRING",
           "value": "x64-linux"
