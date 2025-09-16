@@ -5,10 +5,7 @@
     "lz4",
     "boost-thread",
     "boost-interprocess",
-    {
-      "platform": "linux",
-      "name": "mo2-dxgiformat-header"
-    }
+    "directx-headers"
   ],
   "vcpkg-configuration": {
     "default-registry": {
@@ -28,12 +25,6 @@
         "repository": "https://github.com/ModOrganizer2/vcpkg-registry",
         "baseline": "228cda39fe9d1eeed789c0ef64fd1235dab3b11e",
         "packages": ["mo2-dds-header"]
-      },
-      {
-        "kind": "git",
-        "repository": "https://github.com/Kaedras/vcpkg-registry",
-        "baseline": "df86478e9a98ffde71b41644d082902fd968cd05",
-        "packages": ["mo2-dxgiformat-header"]
       }
     ]
   }

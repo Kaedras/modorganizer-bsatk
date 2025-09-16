@@ -26,7 +26,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 #include <queue>
 #include <vector>
 
-#include <dxgiformat.h>
+// DDS.h depends on dxgiformat.h but does not include it
+#include <directx/dxgiformat.h>
 
 #include <DDS.h>
 
