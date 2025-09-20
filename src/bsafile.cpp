@@ -60,8 +60,8 @@ File::File(const std::string& name, Folder* folder, BSAULong fileSize,
            std::vector<FO4TextureChunk>& texChunks)
     : m_Folder(folder), m_New(false), m_Name(name), m_FileSize(fileSize),
       m_UncompressedFileSize(uncompressedFileSize), m_DataOffset(dataOffset),
-      m_TextureHeader(header), m_ToggleCompressedWrite(false),
-      m_TextureChunks(texChunks), m_DataOffsetWrite(0)
+      m_TextureHeader(header), m_TextureChunks(texChunks),
+      m_ToggleCompressedWrite(false), m_DataOffsetWrite(0)
 {
   m_NameHash         = calculateBSAHash(name);
   m_ToggleCompressed = false;
