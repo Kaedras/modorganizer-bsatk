@@ -121,7 +121,13 @@ EErrorCode File::writeData(fstream& sourceArchive, fstream& targetArchive) const
   } else {
     // copy from file on disc
     fstream sourceFile;
+#ifdef __unix__
+    std::string path(m_SourceFile);
+    std::ranges::replace(path, '\\', '/');
+    sourceFile.open(path);
+#else
     sourceFile.open(m_SourceFile.c_str());
+#endif
     if (!sourceFile.is_open()) {
       return ERROR_SOURCEFILEMISSING;
     }

@@ -156,7 +156,13 @@ Archive::Header Archive::readHeader(std::fstream& infile)
 
 EErrorCode Archive::read(const char* fileName, bool testHashes)
 {
+#ifdef __unix__
+  std::string path(fileName);
+  std::ranges::replace(path, '\\', '/');
+  m_File.open(path, fstream::in | fstream::binary);
+#else
   m_File.open(fileName, fstream::in | fstream::binary);
+#endif
   if (!m_File.is_open()) {
     return ERROR_FILENOTFOUND;
   }
@@ -413,7 +419,14 @@ void Archive::writeHeader(std::fstream& outfile, BSAULong fileFlags,
 EErrorCode Archive::write(const char* fileName)
 {
   std::fstream outfile;
+#ifdef __unix__
+  std::string str(fileName);
+  std::ranges::replace(str, '\\', '/');
+  outfile.open(str, fstream::out | fstream::binary);
+#else
   outfile.open(fileName, fstream::out | fstream::binary);
+#endif
+
   if (!outfile.is_open()) {
     return ERROR_ACCESSFAILED;
   }
@@ -868,6 +881,9 @@ EErrorCode Archive::extractCompressed(File::Ptr file, std::ofstream& outFile) co
 EErrorCode Archive::extract(File::Ptr file, const char* outputDirectory) const
 {
   std::string fileName = makeString("%s/%s", outputDirectory, file->getName().c_str());
+#ifdef __unix__
+  std::ranges::replace(fileName, '\\', '/');
+#endif
   std::ofstream outputFile(fileName.c_str(),
                            fstream::out | fstream::binary | fstream::trunc);
   if (!outputFile.is_open()) {
@@ -1018,6 +1034,9 @@ void Archive::extractFiles(const std::string& targetDirectory,
 
     std::string fileName = makeString("%s\\%s", targetDirectory.c_str(),
                                       fileInfo.file->getFilePath().c_str());
+#ifdef __unix__
+    std::ranges::replace(fileName, '\\', '/');
+#endif
     if (!overwrite && fileExists(fileName)) {
       continue;
     }
@@ -1134,7 +1153,10 @@ void Archive::createFolders(const std::string& targetDirectory, Folder::Ptr fold
   for (std::vector<Folder::Ptr>::iterator iter = folder->m_SubFolders.begin();
        iter != folder->m_SubFolders.end(); ++iter) {
     std::string subDirName = targetDirectory + "/" + (*iter)->getName();
-    std::filesystem::create_directory(subDirName);
+#ifdef __unix__
+    std::ranges::replace(subDirName, '\\', '/');
+#endif
+    std::filesystem::create_directories(subDirName);
     createFolders(subDirName, *iter);
   }
 }
